@@ -92,7 +92,7 @@ class OktaAPIBase:
         else:
             raise OktaAPIError(str(response.json()), str(response.status_code), request_uri=uri, request_method=method)
 
-    def get_paginated_resource(self, uri: str)  -> dict:
+    def get_multiple_resources(self, uri: str)  -> dict:
         method = 'GET'
         response = self.__oktaAPICall__(uri, method)
         if response.status_code != 200:
