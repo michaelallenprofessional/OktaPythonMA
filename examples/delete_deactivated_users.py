@@ -1,4 +1,4 @@
-from okta_python_ma import OktaAPIBase, OktaAPIError
+from okta_py_ma import OktaAPIBase, OktaAPIError
 
 from multiprocessing import Pool
 
