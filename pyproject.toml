@@ -6,8 +6,8 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "okta-python-ma"
-version = "0.0.3"
+name = "okta-py-ma"
+version = "0.0.1"
 authors = [
   { name="Michael Allen", email="michaelallenprofessional@gmail.com" },
 ]
