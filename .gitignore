@@ -2,3 +2,4 @@ test.py
 .git-credentials
 dist/
 src/okta_py_ma.egg-info
+__pycache__
