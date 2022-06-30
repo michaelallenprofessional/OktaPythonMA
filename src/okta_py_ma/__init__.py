@@ -59,7 +59,7 @@ class OktaAPIBase:
         surrounding verifying the API key is valid and making sure the rate limit is not hit. This should be wrapped 
         by more specific (single input) functions for multi-threading purposes.
 
-        The template this was extended from was created by Avery McGill.
+        The template this function was extended from was created by Avery McGill.
 
         :param uri: The request URI (ex: /api/v1/users)
         :type uri: str
