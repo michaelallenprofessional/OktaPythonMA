@@ -8,7 +8,6 @@ This module is intended to be used as a wrapper for Okta API calls that allows f
 :raises KeyError: This error is raised in the event there is something wrong with the rate limiting headers
 :raises OktaAPIError: This error is raised any time the Okta API returns an error
 """
-
 __docformat__ = 'restructuredtext'
 import requests, json
 from multiprocessing.context import AuthenticationError
@@ -43,7 +42,6 @@ class OktaAPIError(Exception):
 
 class OktaAPIBase:
     """Base class that can be used to perform common Okta API patterns in a multi-threaded way and a wrapper for Okta API calls that also handles rate limiting."""
-    # this method needs to set the domain and api key
     def __init__(self, okta_domain: str, api_key: str) -> None:
         """Initialize the OktaAPIBase object with the proper Okta tenant and API key
 
@@ -55,12 +53,13 @@ class OktaAPIBase:
         self.okta_domain = okta_domain
         self.api_key = api_key
 
-    # wrap this method with your actual call methods
     def __oktaAPICall__(self, uri: str, method: str, rate_limit_buffer: int = None, **kwargs) -> requests.Response:
         """
         A method that is used to make all API calls, it handles setting up the http request as well as handles logic
         surrounding verifying the API key is valid and making sure the rate limit is not hit. This should be wrapped 
         by more specific (single input) functions for multi-threading purposes.
+
+        The template this was extended from was created by Avery McGill.
 
         :param uri: The request URI (ex: /api/v1/users)
         :type uri: str

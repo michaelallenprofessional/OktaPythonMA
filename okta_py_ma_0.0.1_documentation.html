@@ -8,15 +8,8 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>okta_py_ma</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cmichael%5Cmy%20drive%5Cdev%5Cwork%5Coktapython%5Csrc%5Cokta_py_ma%5C__init__.py">c:\users\michael\my drive\dev\work\oktapython\src\okta_py_ma\__init__.py</a></font></td></tr></table>
-    <p><tt>This&nbsp;module&nbsp;is&nbsp;intended&nbsp;to&nbsp;be&nbsp;used&nbsp;as&nbsp;a&nbsp;wrapper&nbsp;for&nbsp;Okta&nbsp;API&nbsp;calls&nbsp;that&nbsp;allows&nbsp;for&nbsp;rapid&nbsp;development&nbsp;of&nbsp;multi-threaded&nbsp;scripts&nbsp;using&nbsp;the&nbsp;Okta&nbsp;API.<br>
-&nbsp;<br>
-:class&nbsp;<a href="#OktaAPIBase">OktaAPIBase</a>:&nbsp;Base&nbsp;class&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;perform&nbsp;common&nbsp;Okta&nbsp;API&nbsp;patterns&nbsp;in&nbsp;a&nbsp;multi-threaded&nbsp;way&nbsp;and&nbsp;a&nbsp;wrapper&nbsp;for&nbsp;Okta&nbsp;API&nbsp;calls&nbsp;that&nbsp;also&nbsp;handles&nbsp;rate&nbsp;limiting.<br>
-:class&nbsp;<a href="#OktaAPIError">OktaAPIError</a>:&nbsp;An&nbsp;error&nbsp;type&nbsp;for&nbsp;errors&nbsp;thrown&nbsp;by&nbsp;the&nbsp;Okta&nbsp;API.&nbsp;Takes&nbsp;in&nbsp;information&nbsp;about&nbsp;the&nbsp;request&nbsp;and&nbsp;formats&nbsp;error&nbsp;messages&nbsp;to&nbsp;make&nbsp;troubleshooting&nbsp;the&nbsp;errors&nbsp;easy.<br>
-&nbsp;<br>
-:raises&nbsp;AuthenticationError:&nbsp;This&nbsp;error&nbsp;is&nbsp;raised&nbsp;when&nbsp;the&nbsp;Okta&nbsp;API&nbsp;key&nbsp;is&nbsp;invalid<br>
-:raises&nbsp;KeyError:&nbsp;This&nbsp;error&nbsp;is&nbsp;raised&nbsp;in&nbsp;the&nbsp;event&nbsp;there&nbsp;is&nbsp;something&nbsp;wrong&nbsp;with&nbsp;the&nbsp;rate&nbsp;limiting&nbsp;headers<br>
-:raises&nbsp;<a href="#OktaAPIError">OktaAPIError</a>:&nbsp;This&nbsp;error&nbsp;is&nbsp;raised&nbsp;any&nbsp;time&nbsp;the&nbsp;Okta&nbsp;API&nbsp;returns&nbsp;an&nbsp;error</tt></p>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cmichael%5Cappdata%5Croaming%5Cpython%5Cpython39%5Csite-packages%5Cokta_py_ma%5C__init__.py">c:\users\michael\appdata\roaming\python\python39\site-packages\okta_py_ma\__init__.py</a></font></td></tr></table>
+    <p></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#aa55cc">
@@ -54,66 +47,20 @@
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt><a href="#OktaAPIBase">OktaAPIBase</a>(okta_domain:&nbsp;str,&nbsp;api_key:&nbsp;str)&nbsp;-&amp;gt;&nbsp;None<br>
 &nbsp;<br>
-Base&nbsp;class&nbsp;that&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;perform&nbsp;common&nbsp;Okta&nbsp;API&nbsp;patterns&nbsp;in&nbsp;a&nbsp;multi-threaded&nbsp;way&nbsp;and&nbsp;a&nbsp;wrapper&nbsp;for&nbsp;Okta&nbsp;API&nbsp;calls&nbsp;that&nbsp;also&nbsp;handles&nbsp;rate&nbsp;limiting.<br>&nbsp;</tt></td></tr>
+<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="OktaAPIBase-__init__"><strong>__init__</strong></a>(self, okta_domain: str, api_key: str) -&gt; None</dt><dd><tt>Initialize&nbsp;the&nbsp;<a href="#OktaAPIBase">OktaAPIBase</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;with&nbsp;the&nbsp;proper&nbsp;Okta&nbsp;tenant&nbsp;and&nbsp;API&nbsp;key<br>
-&nbsp;<br>
-:param&nbsp;okta_domain:&nbsp;The&nbsp;domain&nbsp;of&nbsp;the&nbsp;Okta&nbsp;tenant&nbsp;(ex:&nbsp;acme.okta.com)<br>
-:type&nbsp;okta_domain:&nbsp;str<br>
-:param&nbsp;api_key:&nbsp;The&nbsp;Okta&nbsp;API&nbsp;key<br>
-:type&nbsp;api_key:&nbsp;str</tt></dd></dl>
+<dl><dt><a name="OktaAPIBase-__init__"><strong>__init__</strong></a>(self, okta_domain: str, api_key: str) -&gt; None</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
 
-<dl><dt><a name="OktaAPIBase-__oktaAPICall__"><strong>__oktaAPICall__</strong></a>(self, uri: str, method: str, rate_limit_buffer: int = None, **kwargs) -&gt; requests.models.Response</dt><dd><tt>A&nbsp;method&nbsp;that&nbsp;is&nbsp;used&nbsp;to&nbsp;make&nbsp;all&nbsp;API&nbsp;calls,&nbsp;it&nbsp;handles&nbsp;setting&nbsp;up&nbsp;the&nbsp;http&nbsp;request&nbsp;as&nbsp;well&nbsp;as&nbsp;handles&nbsp;logic<br>
-surrounding&nbsp;verifying&nbsp;the&nbsp;API&nbsp;key&nbsp;is&nbsp;valid&nbsp;and&nbsp;making&nbsp;sure&nbsp;the&nbsp;rate&nbsp;limit&nbsp;is&nbsp;not&nbsp;hit.&nbsp;This&nbsp;should&nbsp;be&nbsp;wrapped&nbsp;<br>
-by&nbsp;more&nbsp;specific&nbsp;(single&nbsp;input)&nbsp;functions&nbsp;for&nbsp;multi-threading&nbsp;purposes.<br>
-&nbsp;<br>
-:param&nbsp;uri:&nbsp;The&nbsp;request&nbsp;URI&nbsp;(ex:&nbsp;/api/v1/users)<br>
-:type&nbsp;uri:&nbsp;str<br>
-:param&nbsp;method:&nbsp;HTTP&nbsp;method&nbsp;for&nbsp;the&nbsp;request<br>
-:type&nbsp;method:&nbsp;str<br>
-:param&nbsp;rate_limit_buffer:&nbsp;How&nbsp;many&nbsp;calls&nbsp;below&nbsp;the&nbsp;rate&nbsp;limit&nbsp;will&nbsp;trigger&nbsp;a&nbsp;pause&nbsp;until&nbsp;the&nbsp;rate&nbsp;limit&nbsp;is&nbsp;reached,&nbsp;should&nbsp;be&nbsp;greater&nbsp;than&nbsp;the&nbsp;number&nbsp;of&nbsp;threads,&nbsp;defaults&nbsp;to&nbsp;None&nbsp;(when&nbsp;None&nbsp;it&nbsp;guesses&nbsp;based&nbsp;off&nbsp;which&nbsp;API&nbsp;endpoint)<br>
-:type&nbsp;rate_limit_buffer:&nbsp;int,&nbsp;optional<br>
-:raises&nbsp;AuthenticationError:&nbsp;This&nbsp;error&nbsp;will&nbsp;be&nbsp;thrown&nbsp;if&nbsp;the&nbsp;API&nbsp;key&nbsp;is&nbsp;invalid<br>
-:raises&nbsp;KeyError:&nbsp;This&nbsp;error&nbsp;will&nbsp;be&nbsp;thrown&nbsp;if&nbsp;there&nbsp;are&nbsp;no&nbsp;rate&nbsp;limit&nbsp;headers<br>
-:return:&nbsp;Response&nbsp;<a href="builtins.html#object">object</a>&nbsp;from&nbsp;the&nbsp;request.request()&nbsp;call<br>
-:rtype:&nbsp;requests.Response</tt></dd></dl>
+<dl><dt><a name="OktaAPIBase-__oktaAPICall__"><strong>__oktaAPICall__</strong></a>(self, uri: str, method: str, rate_limit_buffer: int = None, **kwargs) -&gt; requests.models.Response</dt><dd><tt>#&nbsp;wrap&nbsp;this&nbsp;method&nbsp;with&nbsp;your&nbsp;actual&nbsp;call&nbsp;methods</tt></dd></dl>
 
-<dl><dt><a name="OktaAPIBase-delete_single_resource"><strong>delete_single_resource</strong></a>(self, uri: str) -&gt; None</dt><dd><tt>DELETE&nbsp;the&nbsp;Okta&nbsp;resource&nbsp;given&nbsp;by&nbsp;the&nbsp;URI.&nbsp;The&nbsp;URI&nbsp;should&nbsp;be&nbsp;exclusive&nbsp;to&nbsp;a&nbsp;single&nbsp;resource.&nbsp;This&nbsp;wrapps&nbsp;the&nbsp;__oktaAPICall__&nbsp;method&nbsp;in&nbsp;a<br>
-way&nbsp;that&nbsp;is&nbsp;multi-threadable.&nbsp;<br>
-&nbsp;<br>
-:param&nbsp;uri:&nbsp;The&nbsp;URI&nbsp;of&nbsp;the&nbsp;single&nbsp;resource&nbsp;to&nbsp;be&nbsp;deleted&nbsp;(ex:&nbsp;/api/v1/users/&lt;user_id&gt;).&nbsp;This&nbsp;should&nbsp;not&nbsp;have&nbsp;the&nbsp;possibility&nbsp;of&nbsp;returning&nbsp;more&nbsp;than&nbsp;one&nbsp;resource<br>
-:type&nbsp;uri:&nbsp;str<br>
-:raises&nbsp;<a href="#OktaAPIError">OktaAPIError</a>:&nbsp;Is&nbsp;raised&nbsp;when&nbsp;the&nbsp;Okta&nbsp;API&nbsp;returns&nbsp;an&nbsp;error&nbsp;for&nbsp;the&nbsp;given&nbsp;URI<br>
-:return:&nbsp;None&nbsp;if&nbsp;the&nbsp;resource&nbsp;was&nbsp;deleted&nbsp;successfully.&nbsp;This&nbsp;makes&nbsp;it&nbsp;easy&nbsp;to&nbsp;filter&nbsp;the&nbsp;result&nbsp;of&nbsp;this&nbsp;function&nbsp;being&nbsp;multi-threaded<br>
-:rtype:&nbsp;None</tt></dd></dl>
+<dl><dt><a name="OktaAPIBase-delete_single_resource"><strong>delete_single_resource</strong></a>(self, uri: str) -&gt; dict</dt></dl>
 
-<dl><dt><a name="OktaAPIBase-estimate_rate_limit_buffer"><strong>estimate_rate_limit_buffer</strong></a>(self, uri: str) -&gt; int</dt><dd><tt>Takes&nbsp;the&nbsp;request&nbsp;URI&nbsp;as&nbsp;input&nbsp;and&nbsp;estimates&nbsp;what&nbsp;the&nbsp;rate&nbsp;limit&nbsp;buffer&nbsp;should&nbsp;be&nbsp;based&nbsp;on&nbsp;the&nbsp;total&nbsp;rate&nbsp;limit&nbsp;of&nbsp;the&nbsp;endpoint.<br>
-Standard&nbsp;endpoint&nbsp;rate&nbsp;limits&nbsp;are&nbsp;found&nbsp;here:&nbsp;<a href="https://developer.okta.com/docs/reference/rl-global-mgmt/">https://developer.okta.com/docs/reference/rl-global-mgmt/</a>.<br>
-For&nbsp;endpoints&nbsp;with&nbsp;rate&nbsp;limits&nbsp;&lt;=&nbsp;100&nbsp;the&nbsp;buffer&nbsp;is&nbsp;5,&nbsp;for&nbsp;the&nbsp;rest&nbsp;of&nbsp;the&nbsp;endpoints&nbsp;that&nbsp;have&nbsp;rate&nbsp;limits&nbsp;&gt;=&nbsp;500&nbsp;the&nbsp;buffer&nbsp;is&nbsp;20<br>
-&nbsp;<br>
-:param&nbsp;uri:&nbsp;Request&nbsp;URI&nbsp;for&nbsp;the&nbsp;Okta&nbsp;API&nbsp;call<br>
-:type&nbsp;uri:&nbsp;str<br>
-:return:&nbsp;Estimated&nbsp;buffer&nbsp;size&nbsp;for&nbsp;the&nbsp;endpoint&nbsp;in&nbsp;the&nbsp;request&nbsp;URI<br>
-:rtype:&nbsp;int</tt></dd></dl>
+<dl><dt><a name="OktaAPIBase-estimate_rate_limit_buffer"><strong>estimate_rate_limit_buffer</strong></a>(self, uri: str) -&gt; int</dt></dl>
 
-<dl><dt><a name="OktaAPIBase-get_multiple_resources"><strong>get_multiple_resources</strong></a>(self, uri: str) -&gt; List[dict]</dt><dd><tt>Perform&nbsp;a&nbsp;GET&nbsp;on&nbsp;a&nbsp;URI&nbsp;that&nbsp;may&nbsp;return&nbsp;more&nbsp;than&nbsp;one&nbsp;resource.&nbsp;If&nbsp;there&nbsp;is&nbsp;pagination&nbsp;involved&nbsp;this&nbsp;method&nbsp;will<br>
-iterate&nbsp;through&nbsp;all&nbsp;pages&nbsp;and&nbsp;return&nbsp;all&nbsp;resources&nbsp;in&nbsp;a&nbsp;list&nbsp;of&nbsp;JSON&nbsp;objects.&nbsp;<br>
-&nbsp;<br>
-:param&nbsp;uri:&nbsp;The&nbsp;URI&nbsp;that&nbsp;is&nbsp;expected&nbsp;to&nbsp;return&nbsp;multiple&nbsp;resources&nbsp;(ex:&nbsp;/api/v1/users)<br>
-:type&nbsp;uri:&nbsp;str<br>
-:raises&nbsp;<a href="#OktaAPIError">OktaAPIError</a>:&nbsp;Is&nbsp;raised&nbsp;when&nbsp;the&nbsp;Okta&nbsp;API&nbsp;returns&nbsp;an&nbsp;error&nbsp;for&nbsp;the&nbsp;given&nbsp;URI<br>
-:return:&nbsp;List&nbsp;of&nbsp;JSON&nbsp;objects&nbsp;that&nbsp;represent&nbsp;the&nbsp;requested&nbsp;resources<br>
-:rtype:&nbsp;List[dict]</tt></dd></dl>
+<dl><dt><a name="OktaAPIBase-get_multiple_resources"><strong>get_multiple_resources</strong></a>(self, uri: str) -&gt; dict</dt></dl>
 
-<dl><dt><a name="OktaAPIBase-get_single_resource"><strong>get_single_resource</strong></a>(self, uri: str) -&gt; dict</dt><dd><tt>GET&nbsp;the&nbsp;resource&nbsp;given&nbsp;by&nbsp;the&nbsp;URI.&nbsp;The&nbsp;URI&nbsp;should&nbsp;be&nbsp;exclusive&nbsp;to&nbsp;a&nbsp;single&nbsp;resource.&nbsp;This&nbsp;wrapps&nbsp;the&nbsp;__oktaAPICall__&nbsp;method&nbsp;in&nbsp;a<br>
-way&nbsp;that&nbsp;is&nbsp;multi-threadable.&nbsp;<br>
-&nbsp;<br>
-:param&nbsp;uri:&nbsp;The&nbsp;URI&nbsp;of&nbsp;the&nbsp;single&nbsp;resource&nbsp;(ex:&nbsp;/api/v1/users/&lt;user_id&gt;).&nbsp;This&nbsp;should&nbsp;not&nbsp;have&nbsp;the&nbsp;possibility&nbsp;of&nbsp;returning&nbsp;more&nbsp;than&nbsp;one&nbsp;resource<br>
-:type&nbsp;uri:&nbsp;str<br>
-:raises&nbsp;<a href="#OktaAPIError">OktaAPIError</a>:&nbsp;Is&nbsp;raised&nbsp;when&nbsp;the&nbsp;Okta&nbsp;API&nbsp;returns&nbsp;an&nbsp;error&nbsp;for&nbsp;the&nbsp;given&nbsp;URI<br>
-:return:&nbsp;The&nbsp;JSON&nbsp;<a href="builtins.html#object">object</a>&nbsp;representation&nbsp;of&nbsp;the&nbsp;requested&nbsp;resource<br>
-:rtype:&nbsp;dict</tt></dd></dl>
+<dl><dt><a name="OktaAPIBase-get_single_resource"><strong>get_single_resource</strong></a>(self, uri: str) -&gt; dict</dt></dl>
 
 <hr>
 Data descriptors defined here:<br>
@@ -132,7 +79,7 @@ Data descriptors defined here:<br>
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt><a href="#OktaAPIError">OktaAPIError</a>(error_json_str:&nbsp;str,&nbsp;http_status:&nbsp;int,&nbsp;request_uri:&nbsp;str&nbsp;=&nbsp;None,&nbsp;request_method:&nbsp;str&nbsp;=&nbsp;None,&nbsp;request_body_str:&nbsp;str&nbsp;=&nbsp;None)&nbsp;-&amp;gt;&nbsp;None<br>
 &nbsp;<br>
-An&nbsp;error&nbsp;type&nbsp;for&nbsp;errors&nbsp;thrown&nbsp;by&nbsp;the&nbsp;Okta&nbsp;API.&nbsp;Takes&nbsp;in&nbsp;information&nbsp;about&nbsp;the&nbsp;request&nbsp;and&nbsp;formats&nbsp;error&nbsp;messages&nbsp;to&nbsp;make&nbsp;troubleshooting&nbsp;the&nbsp;errors&nbsp;easy.<br>&nbsp;</tt></td></tr>
+<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="okta_py_ma.html#OktaAPIError">OktaAPIError</a></dd>
@@ -142,18 +89,7 @@ An&nbsp;error&nbsp;type&nbsp;for&nbsp;errors&nbsp;thrown&nbsp;by&nbsp;the&nbsp;O
 </dl>
 <hr>
 Methods defined here:<br>
-<dl><dt><a name="OktaAPIError-__init__"><strong>__init__</strong></a>(self, error_json_str: str, http_status: int, request_uri: str = None, request_method: str = None, request_body_str: str = None) -&gt; None</dt><dd><tt>Initialize&nbsp;an&nbsp;<a href="#OktaAPIError">OktaAPIError</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;and&nbsp;build&nbsp;the&nbsp;message&nbsp;property.&nbsp;<br>
-&nbsp;<br>
-:param&nbsp;error_json_str:&nbsp;This&nbsp;is&nbsp;the&nbsp;error&nbsp;message&nbsp;returned&nbsp;in&nbsp;the&nbsp;error&nbsp;json&nbsp;from&nbsp;the&nbsp;Okta&nbsp;API<br>
-:type&nbsp;error_json_str:&nbsp;str<br>
-:param&nbsp;http_status:&nbsp;This&nbsp;is&nbsp;the&nbsp;http&nbsp;status&nbsp;code&nbsp;returned&nbsp;with&nbsp;the&nbsp;Okta&nbsp;API<br>
-:type&nbsp;http_status:&nbsp;int<br>
-:param&nbsp;request_uri:&nbsp;This&nbsp;is&nbsp;the&nbsp;URL&nbsp;of&nbsp;the&nbsp;Okta&nbsp;API&nbsp;call&nbsp;that&nbsp;generated&nbsp;the&nbsp;request,&nbsp;defaults&nbsp;to&nbsp;None<br>
-:type&nbsp;request_uri:&nbsp;str,&nbsp;optional<br>
-:param&nbsp;request_method:&nbsp;This&nbsp;is&nbsp;the&nbsp;http&nbsp;method&nbsp;of&nbsp;the&nbsp;failed&nbsp;request&nbsp;to&nbsp;the&nbsp;Okta&nbsp;API,&nbsp;defaults&nbsp;to&nbsp;None<br>
-:type&nbsp;request_method:&nbsp;str,&nbsp;optional<br>
-:param&nbsp;request_body_str:&nbsp;This&nbsp;is&nbsp;the&nbsp;request&nbsp;body&nbsp;of&nbsp;the&nbsp;failed&nbsp;request&nbsp;to&nbsp;the&nbsp;Okta&nbsp;API,&nbsp;defaults&nbsp;to&nbsp;None<br>
-:type&nbsp;request_body_str:&nbsp;str,&nbsp;optional</tt></dd></dl>
+<dl><dt><a name="OktaAPIError-__init__"><strong>__init__</strong></a>(self, error_json_str: str, http_status: int, request_uri: str = None, request_method: str = None, request_body_str: str = None) -&gt; None</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
 
 <hr>
 Data descriptors defined here:<br>
@@ -199,13 +135,5 @@ Data descriptors inherited from <a href="builtins.html#BaseException">builtins.B
 </dl>
 <dl><dt><strong>args</strong></dt>
 </dl>
-</td></tr></table></td></tr></table><p>
-<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="#55aa55">
-<td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
-    
-<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>List</strong> = typing.List<br>
-<strong>__docformat__</strong> = 'restructuredtext'</td></tr></table>
+</td></tr></table></td></tr></table>
 </body></html>
