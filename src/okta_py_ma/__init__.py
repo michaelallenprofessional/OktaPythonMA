@@ -52,6 +52,8 @@ class OktaAPIBase:
         """
         self.okta_domain = okta_domain
         self.api_key = api_key
+        # make sure the API key is valid
+        self.get_single_resource('/api/v1/users/me')
 
     def __oktaAPICall__(self, uri: str, method: str, rate_limit_buffer: int = None, **kwargs) -> requests.Response:
         """
@@ -118,9 +120,11 @@ class OktaAPIBase:
                 # print 'Waiting on rate limit'
                 while int(calendar.timegm(time.gmtime())) < rateLimitReset + 5:
                     pass
-        except KeyError as key_error:
-            print(response.text)
-            raise key_error
+        except KeyError as e:
+            if 'error' in response.text:
+                raise OktaAPIError(response.text, response.status_code, url, method)
+            else:
+                raise e
  
         return response
 
@@ -183,19 +187,22 @@ class OktaAPIBase:
 
         # pagination logic
         page = 1
-        if len(response.headers['Link'].split(',')) > 1:
-            print('Iterating through pages of users, each page contains 200 users, script will output the current page number every 10 pages')
-        while len(response.headers['Link'].split(',')) > 1:
-            page += 1
-            if page % 10 == 0:
-                print('Page %s' % page)
-            uri = str(response.headers['Link'].split(',')[1].split(';')[0].strip(' ').strip('<').strip('>'))
-            method = "GET"
- 
-            response = self.__oktaAPICall__(uri, method)
-            if response.status_code != 200:
-                raise OktaAPIError(str(response.json()), str(response.status_code), request_uri=uri, request_method=method)
-            resource_list += response.json()
+        # if there is only one page there will be no 'Link' key
+        if 'Link' in response.headers.keys():
+            if len(response.headers['Link'].split(',')) > 1:
+                print('Iterating through pages of users, each page contains 200 users, script will output the current page number every 10 pages')
+            while len(response.headers['Link'].split(',')) > 1:
+                page += 1
+                if page % 10 == 0:
+                    print('Page %s' % page)
+                uri = str(response.headers['Link'].split(',')[1].split(';')[0].strip(' ').strip('<').strip('>'))
+                method = "GET"
+    
+                response = self.__oktaAPICall__(uri, method)
+                if response.status_code != 200:
+                    raise OktaAPIError(str(response.json()), str(response.status_code), request_uri=uri, request_method=method)
+                resource_list += response.json()
+        
         
         return resource_list
 
