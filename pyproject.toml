@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "okta-py-ma"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Michael Allen", email="michaelallenprofessional@gmail.com" },
 ]
